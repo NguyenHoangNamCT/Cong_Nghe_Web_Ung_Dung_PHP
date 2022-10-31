@@ -1,0 +1,45 @@
+
+    .navbar {
+      margin-bottom: 50px;
+      border-radius: 0;
+    }
+        
+    .jumbotron {
+      margin-bottom: 0;
+    }
+   
+    footer {
+      color: gray;
+      background-color: black;
+      padding: 25px;
+    }
+
+    /* stick menu (thanh nav) */
+    #stick { 
+      width: 100%;
+      margin-right: 0px;
+      left: 0px;
+      position: relative;
+      z-index: 9999;
+    }
+
+    /* banner */
+    .banner{
+      max-width: 100%;
+      margin: 0px 0px;
+      padding: 0px;
+    }
+
+    a.nolink:hover{
+      text-decoration: none;
+      color: yellow;
+    }
+
+    .fake{
+      width: 100%;
+      height: 200px;
+      margin: aoto;
+      background-color: lightgray;
+    }
+
+    
