@@ -26,8 +26,8 @@ class DANHMUC{
             $sql = "SELECT * FROM danhmuc";
             $cmd = $dbcon->prepare($sql);
 
-            $cmd->execute();
-            $result = $cmd->fetchAll();
+            $cmd->execute(); //trả về một kết quả
+            $result = $cmd->fetchAll(); //đọc tất cả dữ liệu
             return $result;
         }
         catch(PDOException $e){
@@ -36,7 +36,7 @@ class DANHMUC{
             exit();
         }
     }
-
+ 
     // Thêm mới
     public function themdanhmuc($tendm){
         $dbcon = DATABASE::connect();

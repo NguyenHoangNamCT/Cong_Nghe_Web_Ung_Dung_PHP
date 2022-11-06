@@ -9,15 +9,11 @@ class DATABASE{
     private static $password = "vertrigo";
     private static $options = array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION, 
                                     PDO::MYSQL_ATTR_INIT_COMMAND=>"SET NAMES utf8");    
-    private static $db;//dùng để lưu trạng thái của kết nối
+    private static $db;
     
     private function __construct(){} 
     
     public static function connect(){
-        // if(!isset($db)){
-        //     self::$db = new PDO(self::$dns, self::$username, self::$password, self::$options);
-        // }
-        // return self::$db;
         if(!isset(self::$db)){
             try{
                 self::$db = new PDO(self::$dns, self::$username, self::$password, self::$options);

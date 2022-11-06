@@ -32,20 +32,22 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="index.php"><span class="glyphicon glyphicon-home"></span> Trang chủ</a></li>
         <li><a href="#">Sản phẩm nổi bật</a></li>
-      <!-- Dropdown (SV bổ sung) -->
+      
+        <!-- Dropdown (SV bổ sung) -->
         <li class="nav-item dropdown">
           <a class="nav-link" href="#" data-toggle="dropdown">
             Danh mục sản phẩm<span class="caret"></span>
           </a>
-
           <ul class="dropdown-menu">
-            
-            <li><a href="">Bổ sung</a></li>
-            <li><a href="">Bổ sung</a></li>
-
+            <?php 
+              foreach($danhMuc as $d){
+                echo "<li><a href='group.php?id=".$d['id']."'>".$d["tendanhmuc"]."</a></li>";
+              }
+            ?>
           </ul>
         </li>
       <!-- End Dropdown -->
+
         <li><a href="#">Liên hệ</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
