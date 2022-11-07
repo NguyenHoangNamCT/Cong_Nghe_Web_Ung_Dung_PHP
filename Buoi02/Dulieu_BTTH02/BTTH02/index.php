@@ -26,12 +26,12 @@
               </div>
 
               <div class="panel-body">
-                <a href="">
+                <a href="detail.php?id=<?php echo $m['id']?>">
                   <img src="<?php echo $m['hinhanh'];?>" class="img-responsive fake" alt="Tên hàng">
                 </a>
               </div>
 
-              <div class="panel-footer"><a href=""><?php echo $m['tenmathang']; ?></a></div>
+              <div class="panel-footer"><a href="detail.php?id=<?php echo $m['id']?>"><?php echo $m['tenmathang']; ?></a></div>
             </div>
           </div>
     <?php 

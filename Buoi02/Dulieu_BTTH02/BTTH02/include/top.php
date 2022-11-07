@@ -39,7 +39,9 @@
             Danh mục sản phẩm<span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <?php 
+            <?php
+              $dm = new DANHMUC();
+              $danhMuc = $dm->laydanhmuc(); 
               foreach($danhMuc as $d){
                 echo "<li><a href='group.php?id=".$d['id']."'>".$d["tendanhmuc"]."</a></li>";
               }
