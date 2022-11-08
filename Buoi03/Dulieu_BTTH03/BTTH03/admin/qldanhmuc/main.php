@@ -16,14 +16,33 @@
     <tbody>
       <?php
       $tatCaDanhMuc = $dm->laydanhmuc(); 
-      foreach($tatCaDanhMuc as $r){ 
+      foreach($tatCaDanhMuc as $r){
+        // var_dump($tatCaDanhMuc);
+        if($r['id'] == $idSua){
+      ?>
+          <form method="post">
+            <input type="hidden" name='action' value="capnhat">
+            <input type="hidden" name='id' value="capnhat">
+            <tr>
+                <td><input class="form-control" type="text" name="txtTenDanhMuc" value="<?php echo $r['tendanhmuc']; ?>"></td>
+                <td>
+                    <input type="submit" class="btn btn-success" style="margin: -6px -12px -6px -12px;" value="Lưu">
+                </td>
+                <td><a href="?action=xoa&id=<?php echo $r['id']; ?>" class="btn btn-danger">Xoá</a></td>
+            </tr>
+          </form>
+      <?php
+        }//đóng của if($r['id'] == $idSua)
+        else{
       ?>
         <tr>
           <td><?php echo $r['tendanhmuc']; ?></td>
           <td><a href="?action=sua&id=<?php echo $r['id']; ?>" class="btn btn-warning">Sửa</a></td>
           <td><a href="?action=xoa&id=<?php echo $r['id']; ?>" class="btn btn-danger">Xoá</a></td>
         </tr>
-      <?php } ?>
+      <?php   
+        }//đóng của else
+      }//đóng của foreach ?>
     </tbody>
   </table>
   
