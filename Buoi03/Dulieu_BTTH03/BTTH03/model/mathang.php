@@ -28,7 +28,7 @@ class MatHang{
             return $cmd->fetchAll();
         }
         catch(PDOException $e){
-            echo "<p>$e->getMessage()</p>";
+            echo "<p>".$e->getMessage()."</p>";
             exit();
         }
     }
@@ -46,7 +46,7 @@ class MatHang{
             return $result;
         }
         catch(PDOException $e){
-            echo "<p>Lỗi truy vấn: $e->getMessage()</p>";
+            echo "<p>Lỗi truy vấn: ".$e->getMessage()."</p>";
             exit();
         }
     }
@@ -63,7 +63,7 @@ class MatHang{
             return $result;
         }
         catch(PDOException $e){
-            echo "<p> Lỗi truy vấn: $e->getMessage() </p>";
+            echo "<p> Lỗi truy vấn: ".$e->getMessage()."</p>";
             exit();
         }
     }
@@ -78,7 +78,7 @@ class MatHang{
             $result = $cmd->execute();
             return $result;
         }catch(PDOException $e){
-            echo "<p> Lỗi truy vấn: $e->getMessage() </p>";
+            echo "<p> Lỗi truy vấn: ".$e->getMessage()."</p>";
             exit();
         }
     }
@@ -118,32 +118,57 @@ class MatHang{
         }
     }
 
-    // public function layMatHang(){
-    //     $db = DATABASE::connect();
-    //     try{
-    //         $sql = "select * from mathang";
-    //         $cmd = $db->prepare($sql);
-    //         $cmd->execute();
-    //         $result = $cmd->fetchAll();
-    //         return $result;
-    //     }
-    //     catch(PDOException $e){
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // }
+    //Thêm mặt hàng
+    public function themMatHang($ten, $mota, $giaban, $hinhanh, $dmID){
+        $db = DATABASE::connect();
+        try{
+            $sql = "Insert into mathang(tenmathang, mota, giagoc, giaban, solongton, hinhanh, danhmuc_id, luotxem, luotmua) values(:ten, :mota, 0,:giaban,10,:hinhanh,:danhmuc_id,0,0)";
+            $cmd = $db->prepare($sql);
+            $cmd->bindValue(":ten", $ten);
+            $cmd->bindValue(":mota", $mota);
+            $cmd->bindValue(":giaban", $giaban);
+            $cmd->bindValue(":hinhanh", $hinhanh);
+            $cmd->bindValue(":danhmuc_id", $dmID);
+            return $cmd->execute();
+        }
+        catch(PDOException $e){
+            echo "<p>Lỗi truy vấn $e->getMessage()</p>";
+            exit();
+        }
+    }
 
-    // //Thêm mặt hàng
-    // public function themMatHang(){
-    //     $db = DATABASE::connect();
-    //     try{
-    //         $sql = "Insert into mathang values()";
-    //     }
-    //     catch(PDOException $e){
-    //         echo "<p>Lỗi truy vấn $e->getMessage()</p>";
-    //         exit();
-    //     }
-    // }
+    //Xoá mặt hàng
+    public function xoaMatHang($mhID){
+        $db = DATABASE::connect();
+        try{
+            $sql = "DELETE FROM mathang WHERE id=:mhid";
+            $cmd = $db->prepare($sql);
+            $cmd->bindValue(":mhID", $mhID);
+            return $cmd->execute();
+        }
+        catch(PDOException $e){
+            echo '<p>'.$e->getMessage().'</p>';
+            exit();
+        }
+    }
+
+    //Thêm mặt hàng
+    public function suaMatHang($ten, $mota, $giaban, $hinhanh, $dmID){
+        $db = DATABASE::connect();
+        try{
+            $sql = "UPDATE mathang SET tenmathang = :ten, mota = :mota, giaban = :giaban, hinhanh = :hinhanh, danhmuc_id = :danhmuc_id";
+            $cmd = $db->prepare($sql);
+            $cmd->bindValue(":ten", $ten);
+            $cmd->bindValue(":mota", $mota);
+            $cmd->bindValue(":giaban", $giaban);
+            $cmd->bindValue(":hinhanh", $hinhanh);
+            $cmd->bindValue(":danhmuc_id", $dmID);
+            return $cmd->execute();
+        }
+        catch(PDOException $e){
+            echo "<p>Lỗi truy vấn $e->getMessage()</p>";
+            exit();
+        }
+    }
 }
 ?>

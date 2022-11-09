@@ -17,7 +17,9 @@ switch($action){
 
         include("main.php");
         break;
-
+    case "them":
+        include("add.php");
+        break;
     default:
         break;
 }
