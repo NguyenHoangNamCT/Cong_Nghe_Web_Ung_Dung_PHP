@@ -122,7 +122,7 @@ class MatHang{
     public function themMatHang($ten, $mota, $giaban, $hinhanh, $dmID){
         $db = DATABASE::connect();
         try{
-            $sql = "Insert into mathang(tenmathang, mota, giagoc, giaban, solongton, hinhanh, danhmuc_id, luotxem, luotmua) values(:ten, :mota, 0,:giaban,10,:hinhanh,:danhmuc_id,0,0)";
+            $sql = "Insert into mathang(tenmathang, mota, giagoc, giaban, soluongton, hinhanh, danhmuc_id, luotxem, luotmua) values(:ten, :mota, 0,:giaban,10,:hinhanh,:danhmuc_id,0,0)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(":ten", $ten);
             $cmd->bindValue(":mota", $mota);
@@ -132,7 +132,7 @@ class MatHang{
             return $cmd->execute();
         }
         catch(PDOException $e){
-            echo "<p>Lỗi truy vấn $e->getMessage()</p>";
+            echo "<p>Lỗi truy vấn". $e->getMessage()."</p>";
             exit();
         }
     }
@@ -141,7 +141,7 @@ class MatHang{
     public function xoaMatHang($mhID){
         $db = DATABASE::connect();
         try{
-            $sql = "DELETE FROM mathang WHERE id=:mhid";
+            $sql = "DELETE FROM mathang WHERE id=:mhID";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(":mhID", $mhID);
             return $cmd->execute();
@@ -152,21 +152,46 @@ class MatHang{
         }
     }
 
-    //Thêm mặt hàng
-    public function suaMatHang($ten, $mota, $giaban, $hinhanh, $dmID){
+    //Sửa mặt hàng
+    public function suaMatHang($mhID ,$ten, $mota, $giaban, $hinhanh, $dmID){
         $db = DATABASE::connect();
         try{
-            $sql = "UPDATE mathang SET tenmathang = :ten, mota = :mota, giaban = :giaban, hinhanh = :hinhanh, danhmuc_id = :danhmuc_id";
+            $sql = "UPDATE mathang 
+            SET tenmathang = :ten, mota = :mota, giaban = :giaban, hinhanh = :hinhanh, danhmuc_id = :danhmuc_id
+            WHERE id = :matHangID";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(":ten", $ten);
             $cmd->bindValue(":mota", $mota);
             $cmd->bindValue(":giaban", $giaban);
             $cmd->bindValue(":hinhanh", $hinhanh);
             $cmd->bindValue(":danhmuc_id", $dmID);
+            $cmd->bindValue(":matHangID", $mhID);
             return $cmd->execute();
         }
         catch(PDOException $e){
             echo "<p>Lỗi truy vấn $e->getMessage()</p>";
+            exit();
+        }
+    }
+
+    //Sửa mặt hàng mà không sửa hình
+    public function suaMatHangNgoaiTruTHuocTinhHinhAnh($mhID ,$ten, $mota, $giaban, $dmID){
+        $db = DATABASE::connect();
+        try{
+            $sql = "update mathang 
+            set tenmathang = :ten, mota = :mota, giaban = :giaban, danhmuc_id = :danhmuc_id
+            WHERE id = :matHangID";
+            $cmd = $db->prepare($sql);
+            $cmd->bindValue(":ten", $ten);
+            $cmd->bindValue(":mota", $mota);
+            $cmd->bindValue(":giaban", $giaban);
+            $cmd->bindValue(":danhmuc_id", $dmID);
+            $cmd->bindValue(":matHangID", $mhID);
+            return $cmd->execute();
+        }
+        catch(PDOException $e)
+        {
+            echo '<p>Lỗi truy vấn: '.$e->getMessage().'</p>';
             exit();
         }
     }
