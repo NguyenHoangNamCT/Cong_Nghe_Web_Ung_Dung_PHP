@@ -19,34 +19,39 @@
     {
         if($arr['id'] == $idSua)
         {
-    ?>
-            <tr>
-                <td><input name='selectCapNhatTenMatHang' type="text" value="<?php echo $arr['tenmathang']; ?>" class="form-control"></td>
-                <td><input name='selectCapNhatGiaBan' type="number" value="<?php echo $arr['giaban']; ?>" class="form-control"></td>
-                <td>
-                    <img width="50" class="img-thumbnail" src="../../<?php echo $arr['hinhanh']; ?>" alt="Khômg tìm thấy">
-                    <input type="file" name='fileCapNhat'>
-                </td>
-                <td>
-                    <select name="selectCapNhatDanhMuc" id="" class="form-control">
-                                    <option value="">---Chọn danh mục muốn đổi---</option>
-                        <?php
-                            $danhMuc = new DANHMUC();
-                            $mangDanhMuc = $danhMuc->laydanhmuc();
-                            foreach($mangDanhMuc as $arrDM){
-                                if($arrDM['id'] == $arr['danhmuc_id']){
-                                    echo '<option selected value="'.$arr['id'].'">'.$arr['tendanhmuc'].'</option>';
+    ?>      <form method="post" enctype="multipart/form-data">
+                <tr>
+                    <!-- Các input ẩn để truyền thêm thông tin -->
+                    <input type="hidden" name='action' value="xuLySua">
+                    <input type="hidden" name="id" value="<?php echo $arr['id']; ?>">
+                    <!-- --------------------------------------------------------------- -->
+                    <td><input name='txtCapNhatTenMatHang' type="text" value="<?php echo $arr['tenmathang']; ?>" class="form-control" require></td>
+                    <td><input name='txtCapNhatGiaBan' type="number" value="<?php echo $arr['giaban']; ?>" class="form-control" require></td>
+                    <td>
+                        <img width="50" class="img-thumbnail" src="../../<?php echo $arr['hinhanh']; ?>" alt="Khômg tìm thấy">
+                        <input name="fileCapNhat" type="file">
+                    </td>
+                    <td>
+                        <select name="selectCapNhatDanhMuc" class="form-control">
+                            <option value="">---Chọn danh mục muốn đổi---</option>
+                            <?php
+                                $danhMuc = new DANHMUC();
+                                $mangDanhMuc = $danhMuc->laydanhmuc();
+                                foreach($mangDanhMuc as $arrDM){
+                                    if($arrDM['id'] == $arr['danhmuc_id']){
+                                        echo '<option selected value="'.$arrDM['id'].'">'.$arrDM['tendanhmuc'].'</option>';
+                                    }
+                                    else
+                                        echo '<option value="'.$arrDM['id'].'">'.$arrDM['tendanhmuc'].'</option>';
                                 }
-                                else
-                                    echo '<option value="'.$arr['id'].'">'.$arr['tendanhmuc'].'</option>';
-                            }
-                        ?> 
+                            ?> 
 
-                    </select>
-                </td>
-                <td><input type="submit" value="lưu" class="btn btn-success"></td>
-                <td><a href="?action=xoa&id=<?php echo $arr['id']; ?>" class="btn btn-danger">Xoá</a></td>
-            </tr>
+                        </select>
+                    </td>
+                    <td><input type="submit" value="lưu" class="btn btn-success"></td>
+                    <td><a href="?action=xoa&id=<?php echo $arr['id']; ?>" class="btn btn-danger">Xoá</a></td>
+                </tr>
+            </form>
     <?php
         }
         else

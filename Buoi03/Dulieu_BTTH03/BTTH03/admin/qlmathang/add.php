@@ -4,6 +4,7 @@
   <form class="form-horizontal" method="post" enctype="multipart/form-data">
     <!-- Gửi action qua cho index -->
     <input type="hidden" name='action' value="xuLyThem">
+
     <div class="form-group">
       <label class="col-sm-2 control-label">Tên mặt hàng: </label>
       <div class="col-sm-10">

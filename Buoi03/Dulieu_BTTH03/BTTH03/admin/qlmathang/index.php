@@ -52,6 +52,29 @@ switch($action){
         $idSua = $_GET['id'];
         include('main.php');
         break;
+    case "xuLySua":
+        if(isset($_POST["txtCapNhatTenMatHang"]) && isset($_POST['txtCapNhatGiaBan'])&& isset($_POST['selectCapNhatDanhMuc']) && isset($_POST['id'])){
+            $tenHangCapNhat = $_POST["txtCapNhatTenMatHang"];
+            $giaBanCapNhat = $_POST['txtCapNhatGiaBan'];
+            $danhMucCapNhat = $_POST['selectCapNhatDanhMuc'];
+            $idMH = $_POST['id'];
+
+            if($_FILES['fileCapNhat']['name'] != '')//nếu người dùng không chọn thì sẽ trả về '';
+            {
+                var_dump($tenHangCapNhat);
+                var_dump($giaBanCapNhat);
+                var_dump($danhMucCapNhat);
+                var_dump($idMH);
+                var_dump($_FILES['fileCapNhat']['name']);
+                $hinhAnhCapNhat = 'images/'.$_FILES['fileCapNhat']['name'];
+                $mh->suaMatHang($idMH, $tenHangCapNhat, $giaBanCapNhat, $danhMucCapNhat, $hinhAnhCapNhat);
+            }
+            else
+                $mh->suaMatHang($idMH, $tenHangCapNhat, $giaBanCapNhat, $danhMucCapNhat);
+
+        }
+        include('main.php');
+        break;
     default:
         break;
 }
