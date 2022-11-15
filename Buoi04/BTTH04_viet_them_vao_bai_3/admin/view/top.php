@@ -62,20 +62,77 @@
         <!-- Thông tin người dùng - sẽ bổ sung ở bài thực hành sau -->          
         <div class="dropdown" style="text-align: right;">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            <span class="glyphicon glyphicon-user"></span> Chào --tên--
+            <span class="glyphicon glyphicon-user"></span>
+            Chào <?php if(isset($_SESSION['nguoiDung'])) echo $_SESSION['nguoiDung']['hoten']; ?>
             <span class="caret"></span>
           </a>
             
           <ul class="dropdown-menu dropdown-menu-right">
             <li><a href="#"><span class="glyphicon glyphicon-envelope"></span> Thông báo</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-edit"></span> Hồ sơ cá nhân</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#fCapNhatThongTin"><span class="glyphicon glyphicon-edit"></span> Hồ sơ cá nhân</a></li>
             <li><a href="#"><span class="glyphicon glyphicon-wrench"></span> Đổi mật khẩu</a></li>
             <li class="divider"></li>
-            <li><a href=""><span class="glyphicon glyphicon-log-out"></span> Thoát</a></li>
+            <li><a href="../ktnguoidung/index.php?action=dangXuat"><span class="glyphicon glyphicon-log-out"></span> Thoát</a></li>
           </ul>
         </div>
       </div>
-      
+    
+      <!-- Form cậP nhật hồ sơ người dùng -->
+      <div class="modal fade" id="fCapNhatThongTin" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" datadismiss="modal">&times;</button>
+              <h3 class="modal-title">Hồ sơ cá nhân</h3>
+            </div>
+            <div class="modal-body">
+              <form method="post" enctype="multipart/form-data">
+                <div class="text-center">
+                  <img class="img-circle" src="../../images/<?php echo $_SESSION["nguoiDung"]["hinhanh"]; ?>" alt="<?php echo
+                  $_SESSION["nguoiDung"]["hoten"]; ?>" width="100px">
+                </div>
+
+                <div class="form-group">
+                  <label>Email</label>
+                  <input class="form-control" type="email" name="txtEmail"
+                  placeholder="Email" value="<?php echo $_SESSION["nguoiDung"]["email"]; ?>">
+                </div>
+
+                <div class="form-group">
+                  <label>Số điện thoại</label>
+                  <input class="form-control" type="number" name="txtDienThoai"
+                  placeholder="Email" value="<?php echo $_SESSION["nguoiDung"]["sodienthoai"]; ?>">
+                </div>
+
+                <div class="form-group">
+                  <label>Họ tên</label>
+                  <input class="form-control" type="text" name="txtHoTen"
+                  placeholder="Họ tên" value="<?php echo $_SESSION["nguoiDung"]["hoten"]; ?>"
+                  required>
+                </div>
+
+                <div class="form-group">
+                  <label>Đổi hình đại diện</label>
+                  <input name="txtHinhCu" type="hidden" value="<?php echo $_SESSION["nguoiDung"]["hinhanh"]; ?>">
+                  <input type="file" name="fileHinhCapNhat">
+                </div>
+
+                <div class="form-group">
+                  <input type="hidden" name="txtid" value="<?php echo
+                  $_SESSION["nguoiDung"]["id"]; ?>" >
+                  <!-- Gửi action qua cho index trong kiểm tra người dùng (trong trường hợp này file top này đang nằm trong index của ktnguoidung) -->
+                  <input type="hidden" name="action" value="capNhatHoSoCaNhan" >
+                  <input class="btn btn-primary" type="submit" value="Lưu">
+                  <input class="btn btn-warning" type="reset" value="Hủy">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-default" datadismiss="modal">Đóng</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
      
     

@@ -1,4 +1,7 @@
-<?php 
+<?php
+if(!isset($_SESSION['nguoiDung']))
+    header("location:../index.php");
+
 require("../../model/database.php");
 require("../../model/mathang.php");
 require("../../model/danhmuc.php");

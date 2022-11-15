@@ -1,3 +1,3 @@
 <?php
-header("location:qldanhmuc");
+    header("location:ktnguoidung");
 ?>

@@ -1,7 +1,4 @@
 <?php
-
-
-
 class NGUOIDUNG{
      private $id, $email, $soDienThoai, $matKhau, $hoTen, $loai, $trangThai, $hinhAnh;
 
@@ -141,7 +138,7 @@ class NGUOIDUNG{
                exit();
           }
      }
-     public function FunctionNam($email, $matKhau){
+     public function doiMatKhau($email, $matKhau){
           $db = DATABASE::connect();
           try{
                $sql = "update nguoidung set matkhau = :matKhau where email = :email";
@@ -151,28 +148,18 @@ class NGUOIDUNG{
                return $cmd->execute();
           }
           catch(PDOException $e){
-               echo "<p>Lỗi truy vấn ".$e->getMessage()."</p>";
+               echo "<p>Lỗi truy vấn".$e->getMessage()."</p>";
                exit();
           }
      }
-     public function FunctionNa(){
-          $db = DATABASE::connect();
-          try{
+     // public function FunctionNa(){
+     //      $db = DATABASE::connect();
+     //      try{
      
-          }
-          catch(PDOException $e){
-               echo "<p>Lỗi truy vấn ".$e->getMessage()."</p>";
-               exit();
-          }
-     }
-     public function FunctionN(){
-          $db = DATABASE::connect();
-          try{
-     
-          }
-          catch(PDOException $e){
-               echo "<p>Lỗi truy vấn ".$e->getMessage()."</p>";
-               exit();
-          }
-     }
+     //      }
+     //      catch(PDOException $e){
+     //           echo "<p>Lỗi truy vấn ".$e->getMessage()."</p>";
+     //           exit();
+     //      }
+     // }
 }
