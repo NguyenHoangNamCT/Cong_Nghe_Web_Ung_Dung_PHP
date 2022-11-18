@@ -121,6 +121,26 @@ class NGUOIDUNG{
           }
      }
 
+     //Thêm một người dùng
+     public function themNguoiDung($email, $ten, $sdt, $matKhau, $quyen)
+     {
+          $db = DATABASE::connect();
+          try{
+               $sql = "insert into nguoidung(email, hoten, sodienthoai, matkhau, loai, trangthai) values(:email, :hoTen, :soDienThoai, :matKhau, :loai, 1)";
+               $cmd = $db->prepare($sql);
+               $cmd->bindValue(':email', $email);
+               $cmd->bindValue(':hoTen', $ten);
+               $cmd->bindValue(':soDienThoai', $sdt);
+               $cmd->bindValue(':matKhau', md5($matKhau));
+               $cmd->bindValue(':loai', $quyen);
+               return $cmd->execute();
+          }
+          catch(PDOException $e){
+               echo "<p>Lỗi truy vấn ".$e->getMessage()."</p>";
+               exit();
+          }
+     }          
+
      //cập nhật hồ sơ người dùng
      public function capNhatHoSo($email, $hoTen, $soDienThoai, $hinhAnh){
           $db = DATABASE::connect();
@@ -152,6 +172,40 @@ class NGUOIDUNG{
                exit();
           }
      }
+
+     public function xoaNguoiDung($id){
+          $db = DATABASE::connect();
+          try{
+               $sql = "DELETE FROM nguoidung WHERE id = :id";
+               $cmd = $db->prepare($sql);
+               $cmd->bindValue(':id', $id);
+               return $cmd->execute();
+          }
+          catch(PDOException $e){
+               echo "<p>Lỗi truy vấn ".$e->getMessage()."</p>";
+               exit();
+          }
+     }
+
+     public function thayDoiTrangThaiNguoiDung($id, $trangThai){
+          $db = DATABASE::connect();
+          try{
+               if($trangThai == 1)
+                    $trangThai = 0;
+               else
+                    $trangThai = 1;
+               $sql = "update nguoidung set trangthai = :trangThaiMoi where id = :id";
+               $cmd = $db->prepare($sql);
+               $cmd->bindValue(':trangThaiMoi', $trangThai);
+               $cmd->bindValue(':id', $id);
+               return $cmd->execute();
+          }
+          catch(PDOException $e){
+               echo "<p>Lỗi truy vấn ".$e->getMessage()."</p>";
+               exit();
+          }
+     }
+
      // public function FunctionNa(){
      //      $db = DATABASE::connect();
      //      try{

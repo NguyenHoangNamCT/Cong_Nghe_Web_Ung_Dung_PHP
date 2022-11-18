@@ -38,7 +38,7 @@
 <!-- Menu mh nhỏ - kết thúc -->
 <div class="container-fluid">
   <div class="row content">
-    <!-- Menu mh lớn -->     
+    <!-- Menu mh lớn -->
     <div class="col-sm-3 sidenav hidden-xs">
       <h3>          
         <span class="label label-info">A</span>
@@ -50,8 +50,21 @@
         <li class="active"><a href="#"><span class="glyphicon glyphicon-cog"></span> Bảng điều khiển</a></li>
         <li><a href="../qldanhmuc/index.php"><span class="glyphicon glyphicon-list-alt"></span> Quản lý danh mục</a></li>
         <li><a href="../qlmathang/index.php"><span class="glyphicon glyphicon-gift"></span> Quản lý mặt hàng</a></li>
+        <?php
+          if(isset($_SESSION['nguoiDung']) && $_SESSION['nguoiDung']['loai'] == 1)
+          {
+        ?>
+            <li class="active">
+              <a href="#">
+                <span class="glyphicon glyphicon-cog"></span>
+                Quản trị hệ thống
+              </a>
+            </li>
+            <li><a href="../qlnguoidung/"><span class="glyphicon glyphicon-listalt"></span> Quản lý người dùng</a></li>
+        <?php 
+          }
+        ?>
         <li><a href=""><span class="glyphicon glyphicon-list-alt"></span> Quản lý... (bổ sung)</a></li>
-      
       </ul><br>
     </div>
     <!-- Menu mh lớn - kết thúc -->
