@@ -48,6 +48,11 @@
             $_SESSION['nguoiDung'] = $nd->layMotNguoiDung($email);
             include("main.php");
             break;
+        case 'doiMatKhau':
+            $mkMoi = $_POST['txtMatKhauMoi'];
+            $nd->doiMatKhau($_SESSION['nguoiDung']['email'], $mkMoi);
+            include('main.php');
+            break;
         default:
             break;
     }

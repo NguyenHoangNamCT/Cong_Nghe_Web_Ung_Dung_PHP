@@ -138,13 +138,13 @@ class NGUOIDUNG{
                exit();
           }
      }
-     public function doiMatKhau($email, $matKhau){
+     public function doiMatKhau($email, $matKhauMoi){
           $db = DATABASE::connect();
           try{
-               $sql = "update nguoidung set matkhau = :matKhau where email = :email";
+               $sql = "update nguoidung set matkhau = :matKhauMoi where email = :email";
                $cmd = $db->prepare($sql);
                $cmd->bindValue(":email", $email);
-               $cmd->bindValue(":matKhau", md5($matKhau));
+               $cmd->bindValue(":matKhauMoi", md5($matKhauMoi));
                return $cmd->execute();
           }
           catch(PDOException $e){

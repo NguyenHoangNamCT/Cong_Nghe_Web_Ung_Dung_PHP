@@ -154,22 +154,14 @@
                 </div>
 
                 <div class="form-group">
-                  <label>Mật khẩu cũ</label>
-                  <input class="form-control" type="number" name="txtMatKhauCu"
-                  placeholder="Email" value="<?php echo $_SESSION["nguoiDung"]["sodienthoai"]; ?>">
-                </div>
-
-                <div class="form-group">
                   <label>Mật khẩu mới</label>
                   <input class="form-control" type="text" name="txtMatKhauMoi"
-                  placeholder="Họ tên" value="<?php echo $_SESSION["nguoiDung"]["hoten"]; ?>"
+                  placeholder="Mật khẩu mới"
                   required>
                 </div>
 
                 <div class="form-group">
-                  <input type="hidden" name="txtid" value="<?php echo
-                  $_SESSION["nguoiDung"]["id"]; ?>" >
-                  <!-- Gửi action qua cho index trong kiểm tra người dùng (trong trường hợp này file top này đang nằm trong index của ktnguoidung) -->
+                  <!-- Gửi action qua cho chính trang này (trong trường hợp này file top này đang nằm trong index của ktnguoidung) -->
                   <input type="hidden" name="action" value="doiMatKhau" >
 
                   <input class="btn btn-primary" type="submit" value="Lưu">
