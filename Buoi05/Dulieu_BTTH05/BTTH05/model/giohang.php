@@ -23,6 +23,14 @@ function demSoSPTrongGio()
     return $sum;
 }
 
+function xoaSPKhoiGioHangTheoID($id)
+{
+    for($i = 0; $i < count($_SESSION['gioHang']); $i++){
+        if($_SESSION['gioHang'][$i]['id'] == $id)
+            \array_splice($_SESSION['gioHang'], $i, 1);
+    }
+}
+
 // function FunctionName(Type $var = null)
 // {
 //     # code...

@@ -8,7 +8,7 @@
       
       <div><img src="<?php echo $mhct["hinhanh"]; ?>"></div>
 
-      <h4 class="text-primary">Giá bán: 
+      <h4 class="text-primary">Giá bán:
         <span class="text-danger"><?php echo number_format($mhct["giaban"]); ?> đ</span>
       </h4>
       
@@ -16,7 +16,22 @@
         <p><?php echo $mhct["mota"]; ?></p>
       </div>
       <br>
+      <div class="col-sm-5">
+        <form method="post" class="form-inline" style="margin-bottom: 20px;">
+          <label for="soLuong">Số lượng</label>
+          <input type="number" class="form-control" name="soLuong" placeholder="Nhập số lượng">
+          <input type="submit" value="Mua" class = "btn btn-success">
+          <!-- Gửi dữ liệu ẩn -->
+          <input type="hidden" name="action" value="choVaoGio">
+          <input type="hidden" name="id" value="<?php echo $mhct['id']; ?>">
+          <!-- -------------- -->
+        </form>
+      </div>
     </div>
+
+
+
+    <!-- Để làm cái tham chạy lên -->
     <div class="col-sm-3"> 
       <h3>Sản phẩm cùng loại:</h3>
       <div style="height: 300px">
@@ -36,7 +51,7 @@
             <a href="?action=xemchitiet&mahang=<?php echo $m["id"]; ?>">
             <img src="<?php echo $m["hinhanh"]; ?>" class="img-responsive" style="width:100%"></a>
             <div>Giá bán: <span  class="text-danger">
-            <?php echo number_format($m["giaban"]); ?>đ</span>  
+            <?php echo number_format($m["giaban"]); ?></span>  
             </div>
           </div> 
           <div class="panel-footer"><a class="btn btn-info" href="?action=xemchitiet&mahang=<?php echo $m["id"]; ?>">

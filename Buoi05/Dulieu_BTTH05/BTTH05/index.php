@@ -69,6 +69,7 @@ switch($action){
 
         $SPDaCoTrongGioHang = false;
 
+        //Nếu đã tồn tại trong giỏ hàng thì cập nhật số lượng
         for($i = 0; $i < count($_SESSION['gioHang']); $i++){
             if($_SESSION['gioHang'][$i]['id'] == $matHangID){
                 $_SESSION['gioHang'][$i]['soLuong'] += $soLuong;
@@ -81,18 +82,24 @@ switch($action){
             themHangVaoGio($matHangID, $soLuong);
         include('cart.php');
         break;
+    case "capNhatGioHang":
+        echo '<br><br><br><br>';
+        //cập nhật lại số lượng trong giỏ hàng, và xoá những mặt hàng có số lượng là 0
+        for($i = 0; $i < count($_SESSION['gioHang']); $i++){
+            if(isset($_REQUEST['txtSLCuaID'.$_SESSION['gioHang'][$i]['id']])){
+                $_SESSION['gioHang'][$i]['soLuong'] = $_REQUEST['txtSLCuaID'.$_SESSION['gioHang'][$i]['id']];
+            }
+            if($_SESSION['gioHang'][$i]['soLuong'] <= 0)
+                xoaSPKhoiGioHangTheoID($_SESSION['gioHang'][$i]['id']);                
+        }
+        include('cart.php');
+        break;
     case "xoaSPKhoiGioHang":
         if(isset($_GET['chiSo']))
+        {
             $mhID = $_GET['chiSo'];
-
-        $mangSanPhamTrongGio = $_SESSION['gioHang'];
-
-        for($i = 0; $i < count($mangSanPhamTrongGio); $i++)
-            if($mangSanPhamTrongGio[$i]['id'] == $mhID)
-            {
-                \array_splice($_SESSION['gioHang'], $i, 1);
-                break;
-            }
+            xoaSPKhoiGioHangTheoID($mhID);
+        }
         include('cart.php');
         break;
     default:
