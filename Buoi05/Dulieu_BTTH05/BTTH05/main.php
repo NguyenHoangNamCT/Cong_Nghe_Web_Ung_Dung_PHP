@@ -16,7 +16,7 @@
         </div>
 
         <div class="panel-body">
-          <a href="?action=xemchitiet&mahang=<?php echo $mh["id"]; ?>"><img src="<?php echo $mh["hinhanh"]; ?>" class="img-responsive" style="width:100%" alt="<?php echo $mh["tenmathang"]; ?>"></a>
+          <a href="?action=xemch  itiet&mahang=<?php echo $mh["id"]; ?>"><img src="<?php echo $mh["hinhanh"]; ?>" class="img-responsive" style="width:100%" alt="<?php echo $mh["tenmathang"]; ?>"></a>
           <strong>
             Giá bán: 
             <span  class="text-danger"><?php echo number_format($mh["giaban"]); ?>đ</span> 
