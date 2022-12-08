@@ -33,8 +33,8 @@
         <?php
         if(isset($_SESSION["nguoidung"]) && $_SESSION["nguoidung"]["loai"]==1){
         ?>
-        <li class="active"><a href="#">Quản trị</a></li>
-        <li><a href="../qlnguoidung/">Quản lý người dùng</a></li>
+          <li class="active"><a href="#">Quản trị</a></li>
+          <li><a href="../qlnguoidung/">Quản lý người dùng</a></li>
         <?php } ?>          
       </ul>
     </div>

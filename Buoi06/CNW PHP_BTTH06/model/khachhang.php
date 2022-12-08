@@ -1,6 +1,6 @@
 <?php 
 class KHACHHANG{
-    public function themKhachHang($email, $hoTen, $SDT, $diaChi)
+    public function themKhachHang($email, $hoTen, $SDT)
     {
         $db = DATABASE::connect();
         try{
@@ -12,11 +12,13 @@ class KHACHHANG{
             $cmd->bindvalue(':hoten', $hoTen);
             $cmd->bindvalue(':loai', 3);
             $cmd->bindvalue(':trangthai', 1);
-            return $cmd->execute();
+            $cmd->execute();
+            return $db->lastInsertId();
         }
         catch(PDOException $e)
         {
             echo '<p>Lỗi truy vấn: '.$e->getMessage().'</p>';
+            exit();
         }
     }
 }

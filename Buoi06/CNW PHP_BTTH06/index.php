@@ -3,6 +3,11 @@ require("model/database.php");
 require("model/danhmuc.php");
 require("model/mathang.php");
 require("model/giohang.php");
+require("model/khachhang.php");
+require("model/diachi.php");
+require("model/donhang.php");
+require("model/chiTietHoaDon.php");
+
 
 $dm = new DANHMUC();
 $mh = new MATHANG();
@@ -100,7 +105,21 @@ switch($action){
 		$sdt = $_POST['inputSDT'];
 		$diaChi = $_POST['inputDiaChi'];
 		$kh = new KHACHHANG();
-		$kh->themKhachHang($email, $hoTen, $sdt, $diaChi);
+		$DiaChi = new DIACHI();
+		$donHang = new DONHANG();
+		$chiTietHoaDon = new CHITIETHOADON();
+		//thêm người dùng mới và lưu id của người dùng đó vào biến idKHMoi
+		$idKHMoi = $kh->themKhachHang($email, $hoTen, $sdt);
+		//thêm địa chỉ mới
+		$DiaChi->themDiaChi($diaChi, $idKHMoi);
+		//thêm đơn hàng mới
+		$tongTien = tinhtiengiohang();
+		$hoaDonId = $donHang->themDonHang($idKHMoi, $tongTien, '');
+		//thêm các chi tiết vào đơn hàng
+		$gioHang = laygiohang();
+		foreach($gioHang as $maMH => $thongTinMH)
+			$chiTietHoaDon->themChiTietHoaDon($hoaDonId, $maMH, $thongTinMH['giaban'], $thongTinMH['soluong']);
+		xoagiohang();
 		include("thanks.php");
 		break;
     default:

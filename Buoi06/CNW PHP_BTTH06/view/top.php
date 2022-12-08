@@ -71,7 +71,7 @@
           <span class="glyphicon glyphicon-search"></span> Tìm kiếm</a></li>  
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Đăng nhập</a></li>
+        <li><a href="admin/ktnguoidung/index.php"><span class="glyphicon glyphicon-user"></span> Đăng nhập</a></li>
         <li><a href="index.php?action=xemgiohang" class="text-warning">
           <span class="glyphicon glyphicon-shopping-cart"></span> Giỏ hàng
 		  <span class="badge"><?php echo demhangtronggio(); ?></span>
