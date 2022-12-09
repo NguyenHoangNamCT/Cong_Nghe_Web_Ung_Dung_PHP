@@ -19,5 +19,20 @@ class CHITIETHOADON{
             exit(); 
         }
     }
+
+    public function xoaChiTietHoaDonTheoMaHoaDon($donHangId)
+    {
+        $db = DATABASE::connect();
+        try{
+            $sql = "DELETE FROM donhangct where donhang_id = :donHangId";
+            $cmd = $db->prepare($sql);
+            $cmd->bindvalue(":donHangId", $donHangId);
+            return $cmd->execute();
+        }
+        catch(PDOException $e){
+            echo "<p>Lỗi truy vấn ở phương thức xoaChiTietHoaDonTheoMaHoaDon: ".$e->getMessage()."</p>";
+            exit();
+        }
+    }
 }
 ?>

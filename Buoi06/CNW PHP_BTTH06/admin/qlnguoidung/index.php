@@ -22,7 +22,7 @@ switch($action){
 			$sort = $_GET["sort"];
 			switch($sort){
 				case 'email':
-					usort($nguoidung, function($a, $b){ return strcmp($a["email"], $b["email"]); });
+					usort($nguoidung, function($a, $b){ return strcmp($a["email"], $b["email"]); }); //hoặc truyền dô một cái chuổi trùng tên với tên hàm xây sẵn
 					break;
 				case 'sodienthoai':
 					usort($nguoidung, function($a, $b){ return strcmp($b["sodienthoai"], $a["sodienthoai"]); });
@@ -33,6 +33,9 @@ switch($action){
 				case 'loai':
 					usort($nguoidung, function($a, $b){ return $a["loai"] - $b["loai"]; });
 					break;
+                case 'trangThai':
+                    usort($nguoidung, function($a, $b){ return ($b['trangthai'] - $a['trangthai']); });//sort giảm dần theo trạng thái
+                    break;
 				default:
 					ksort($nguoidung);
 					break;

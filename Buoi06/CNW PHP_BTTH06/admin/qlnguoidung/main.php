@@ -24,7 +24,7 @@
 		<th><a href="index.php?sort=sodienthoai">Số điện thoại</a></th>
 		<th><a href="index.php?sort=hoten">Họ tên</a></th>
 		<th><a href="index.php?sort=loai">Loại quyền</a></th>
-		<th>Trạng thái</th>
+		<th><a href="index.php?sort=trangThai">Trạng thái</a></th>
 		<th>Khóa</th></tr>
       <?php foreach ($nguoidung as $nd): ?>
         <tr><td><?php echo $nd["email"]; ?></td>

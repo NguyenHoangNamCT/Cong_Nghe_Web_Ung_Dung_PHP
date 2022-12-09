@@ -41,6 +41,7 @@
   </div>
 </nav>
 <!-- Menu mh nhỏ - kết thúc -->
+
 <div class="container-fluid">
   <div class="row content">
     <!-- Menu mh lớn -->     
@@ -61,6 +62,7 @@
         ?>
         <li class="active"><a href="#"><span class="glyphicon glyphicon-cog"></span> Quản trị</a></li>
         <li><a href="../qlnguoidung"><span class="glyphicon glyphicon-list-alt"></span> Quản lý người dùng</a></li>
+        <li><a href="../qlhoadon"><span class="glyphicon glyphicon-list-alt"></span> Quản lý hoá đơn</a></li>
       <?php } ?>
       </ul><br>
     </div>

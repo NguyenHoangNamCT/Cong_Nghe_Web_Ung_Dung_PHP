@@ -1,4 +1,4 @@
-<?php include("../view/top.php"); ?>
+<!-- <?php include("../view/top.php"); ?>
 
 <h3>Thêm mặt hàng</h3> 
 <br>
@@ -46,4 +46,4 @@
 </div>
 </form>
 
-<?php include("../view/bottom.php"); ?>
+<?php include("../view/bottom.php"); ?> -->
